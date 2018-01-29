@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX & APIs</title>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+			$(document).ready(function() {
+			    $('form').submit(function() {
+			    	var username = $('input[name="username"]').val();
+			    	$.get("https://api.github.com/users/" + username, function(response){
+			    		console.log(response);
+			    		var html_str= `
+			    						<img src="${response.avatar_url}">
+			    						<h1>${response.name}</h>
+			    						<p>${response.bio}</p>
+			    					`;
+			    		$('#landing_spot').append(html_str);
+			    	}, "json");
+			    	
+			    	return false;
+			    });
+			    
+			})
+		</script>
+	</head>
+	<body>
+		<form action="" method="post">
+			<input type="text" name="username">
+			<input type="submit" value="Get Git">
+		</form>
+		
+		<div id="landing_spot">
+			
+		</div>
+			    	
+	
+	</body>
+</html>
+
+
